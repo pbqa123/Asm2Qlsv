@@ -12,14 +12,8 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
     $gender=$_POST['gender'];
     $dob=$_POST['dob'];
     $stuid=$_POST['stuid'];
-    $fname=$_POST['fname'];
-    $mname=$_POST['mname'];
-    $connum=$_POST['connum'];
-    $altconnum=$_POST['altconnum'];
-    $address=$_POST['address'];
     $uname=$_POST['uname'];
     $password=md5($_POST['password']);
-    $image=$_FILES["image"]["name"];
     $ret="select UserName from tblstudent where UserName=:uname || StuID=:stuid";
     $query= $dbh->prepare($ret);
     $query->bindParam(':uname',$uname,PDO::PARAM_STR);
@@ -27,37 +21,23 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
     $query->execute();
     $results = $query->fetchAll(PDO::FETCH_OBJ);
     if($query->rowCount() == 0) {
-      $extension = substr($image,strlen($image)-4,strlen($image));
-      $allowed_extensions = array(".jpg","jpeg",".png",".gif");
-      if(!in_array($extension,$allowed_extensions)) {
-        echo "<script>alert('Logo has Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
+      $sql="insert into tblstudent(StudentName,StudentEmail,StudentClass,Gender,DOB,StuID,UserName,Password) values(:stuname,:stuemail,:stuclass,:gender,:dob,:stuid,:uname,:password)";
+      $query=$dbh->prepare($sql);
+      $query->bindParam(':stuname',$stuname,PDO::PARAM_STR);
+      $query->bindParam(':stuemail',$stuemail,PDO::PARAM_STR);
+      $query->bindParam(':stuclass',$stuclass,PDO::PARAM_STR);
+      $query->bindParam(':gender',$gender,PDO::PARAM_STR);
+      $query->bindParam(':dob',$dob,PDO::PARAM_STR);
+      $query->bindParam(':stuid',$stuid,PDO::PARAM_STR);
+      $query->bindParam(':uname',$uname,PDO::PARAM_STR);
+      $query->bindParam(':password',$password,PDO::PARAM_STR);
+      $query->execute();
+      $LastInsertId=$dbh->lastInsertId();
+      if ($LastInsertId>0) {
+        echo '<script>alert("Sinh viên đã được thêm.")</script>';
+        echo "<script>window.location.href ='add-students.php'</script>";
       } else {
-        $image=md5($image).time().$extension;
-        move_uploaded_file($_FILES["image"]["tmp_name"],"images/".$image);
-        $sql="insert into tblstudent(StudentName,StudentEmail,StudentClass,Gender,DOB,StuID,FatherName,MotherName,ContactNumber,AltenateNumber,Address,UserName,Password,Image)values(:stuname,:stuemail,:stuclass,:gender,:dob,:stuid,:fname,:mname,:connum,:altconnum,:address,:uname,:password,:image)";
-        $query=$dbh->prepare($sql);
-        $query->bindParam(':stuname',$stuname,PDO::PARAM_STR);
-        $query->bindParam(':stuemail',$stuemail,PDO::PARAM_STR);
-        $query->bindParam(':stuclass',$stuclass,PDO::PARAM_STR);
-        $query->bindParam(':gender',$gender,PDO::PARAM_STR);
-        $query->bindParam(':dob',$dob,PDO::PARAM_STR);
-        $query->bindParam(':stuid',$stuid,PDO::PARAM_STR);
-        $query->bindParam(':fname',$fname,PDO::PARAM_STR);
-        $query->bindParam(':mname',$mname,PDO::PARAM_STR);
-        $query->bindParam(':connum',$connum,PDO::PARAM_STR);
-        $query->bindParam(':altconnum',$altconnum,PDO::PARAM_STR);
-        $query->bindParam(':address',$address,PDO::PARAM_STR);
-        $query->bindParam(':uname',$uname,PDO::PARAM_STR);
-        $query->bindParam(':password',$password,PDO::PARAM_STR);
-        $query->bindParam(':image',$image,PDO::PARAM_STR);
-        $query->execute();
-        $LastInsertId=$dbh->lastInsertId();
-        if ($LastInsertId>0) {
-          echo '<script>alert("Sinh viên đã được thêm.")</script>';
-          echo "<script>window.location.href ='add-students.php'</script>";
-        } else {
-          echo '<script>alert("Đã xảy ra lỗi. Vui lòng thử lại")</script>';
-        }
+        echo '<script>alert("Đã xảy ra lỗi. Vui lòng thử lại")</script>';
       }
     } else {
       echo "<script>alert('Tên người dùng hoặc Id sinh viên đã tồn tại. Vui lòng thử lại');</script>";
@@ -65,6 +45,7 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
   }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -143,31 +124,6 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
                       <div class="form-group">
                         <label for="exampleInputName1">ID Sinh Viên</label>
                         <input type="text" name="stuid" value="" class="form-control" required='true'>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputName1">Ảnh Sinh Viên</label>
-                        <input type="file" name="image" class="form-control" required='true'>
-                      </div>
-                      <h3>Thông tin chi tiết</h3>
-                      <div class="form-group">
-                        <label for="exampleInputName1">Tên Bố</label>
-                        <input type="text" name="fname" value="" class="form-control" required='true'>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputName1">Tên Mẹ</label>
-                        <input type="text" name="mname" value="" class="form-control" required='true'>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputName1">SĐT Liên Hệ</label>
-                        <input type="text" name="connum" value="" class="form-control" required='true' maxlength="10" pattern="[0-9]+">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputName1">SĐT Bố , Mẹ</label>
-                        <input type="text" name="altconnum" value="" class="form-control" required='true' maxlength="10" pattern="[0-9]+">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputName1">Địa Chỉ </label>
-                        <textarea name="address" class="form-control" required='true'></textarea>
                       </div>
                       <h3>Thông tin thêm về đăng nhập</h3>
                       <div class="form-group">
