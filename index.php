@@ -56,7 +56,7 @@ include('includes/dbconnection.php');
           <h3>Hệ Thống Quản Lý Sinh Viên</h3>      
            <p>Các sinh viên đã đăng ký có thể đăng nhập ở đây</p>             
           <div class="readmore">
-          <a href="user/login.php">Đăng Nhập Sinh Viên <i class="glyphicon glyphicon-menu-right"> </i></a>
+          <a href="user/login.php">Đăng Nhập Sinh Viên </a>
           </div>
          </li>
         </ul>
