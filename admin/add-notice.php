@@ -2,22 +2,22 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['sturecmsaid']==0)) {
+if (strlen($_SESSION['sturecmsaid']) == 0) {
   header('location:logout.php');
 } else {
   if(isset($_POST['submit'])) {
-    $nottitle=$_POST['nottitle'];
-    $classid=$_POST['classid'];
-    $notmsg=$_POST['notmsg'];
-    $sql="insert into tblnotice(NoticeTitle,ClassId,NoticeMsg)values(:nottitle,:classid,:notmsg)";
-    $query=$dbh->prepare($sql);
-    $query->bindParam(':nottitle',$nottitle,PDO::PARAM_STR);
-    $query->bindParam(':classid',$classid,PDO::PARAM_STR);
-    $query->bindParam(':notmsg',$notmsg,PDO::PARAM_STR);
+    $nottitle = $_POST['nottitle'];
+    $classid = $_POST['classid'];
+    $notmsg = $_POST['notmsg'];
+    $sql = "insert into tblnotice(NoticeTitle, ClassId, NoticeMsg) values (:nottitle, :classid, :notmsg)";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':nottitle', $nottitle, PDO::PARAM_STR);
+    $query->bindParam(':classid', $classid, PDO::PARAM_STR);
+    $query->bindParam(':notmsg', $notmsg, PDO::PARAM_STR);
     $query->execute();
-    $LastInsertId=$dbh->lastInsertId();
-    if ($LastInsertId>0) {
-      echo '<script>alert("Thông báo đã được thêm vào.")</script>';
+    $LastInsertId = $dbh->lastInsertId();
+    if ($LastInsertId > 0) {
+      echo '<script>alert("Notice has been added successfully.")</script>';
       echo "<script>window.location.href ='add-notice.php'</script>";
     } else {
       echo '<script>alert("Something Went Wrong. Please try again")</script>';
@@ -51,10 +51,10 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title">Thêm Thông Báo</h3>
+              <h3 class="page-title">Add Notice</h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">Thêm Thông Báo</li>
+                  <li class="breadcrumb-item active" aria-current="page">Add Notice</li>
                 </ol>
               </nav>
             </div>
@@ -62,31 +62,31 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title" style="text-align: center;">Thêm Thông Báo</h4>
+                    <h4 class="card-title" style="text-align: center;">Add Notice</h4>
                     <form class="forms-sample" method="post" enctype="multipart/form-data">
                       <div class="form-group">
-                        <label for="exampleInputName1">Tiêu Đề Thông báo</label>
+                        <label for="exampleInputName1">Notice Title</label>
                         <input type="text" name="nottitle" value="" class="form-control" required='true'>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputEmail3">Thông báo Đến Lớp Học</label>
+                        <label for="exampleInputEmail3">Notice To Class</label>
                         <select name="classid" class="form-control" required='true'>
                           <option value="">Select Class</option>
                           <?php 
                           $sql2 = "SELECT * from tblclass";
                           $query2 = $dbh->prepare($sql2);
                           $query2->execute();
-                          $result2=$query2->fetchAll(PDO::FETCH_OBJ);
+                          $result2 = $query2->fetchAll(PDO::FETCH_OBJ);
                           foreach($result2 as $row1) { ?>  
                             <option value="<?php echo htmlentities($row1->ID);?>"><?php echo htmlentities($row1->ClassName);?> <?php echo htmlentities($row1->Section);?></option>
                           <?php } ?> 
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputName1">Tin nhắn thông báo</label>
+                        <label for="exampleInputName1">Notice Message</label>
                         <textarea name="notmsg" value="" class="form-control" required='true'></textarea>
                       </div>
-                      <button type="submit" class="btn btn-primary mr-2" name="submit">Thêm</button>
+                      <button type="submit" class="btn btn-primary mr-2" name="submit">Add</button>
                     </form>
                   </div>
                 </div>

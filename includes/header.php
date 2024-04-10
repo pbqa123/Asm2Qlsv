@@ -13,9 +13,9 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right margin-top cl-effect-2">
-                    <li><a href="index.php"><span data-hover="Trang Chủ">Trang Chủ</span></a></li>            
-                    <li><a href="admin/login.php"><span data-hover="Quản Trị Viên">Quản Trị</span></a></li>
-                    <li><a href="user/login.php"><span data-hover="Sinh Viên">Sinh Viên</span></a></li>
+                    <li><a href="index.php"><span data-hover="Trang Chủ">Home</span></a></li>            
+                    <li><a href="admin/login.php"><span data-hover="Quản Trị Viên">Admin</span></a></li>
+                    <li><a href="user/login.php"><span data-hover="Sinh Viên">Student</span></a></li>
                 </ul>
                 <div class="clearfix"></div>
             </div><!-- /.navbar-collapse -->

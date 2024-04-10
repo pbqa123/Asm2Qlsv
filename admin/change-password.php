@@ -3,30 +3,30 @@ session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
 error_reporting(0);
-if (strlen($_SESSION['sturecmsaid']==0)) {
+if (strlen($_SESSION['sturecmsaid']) == 0) {
   header('location:logout.php');
 } else {
   if(isset($_POST['submit'])) {
-    $adminid=$_SESSION['sturecmsaid'];
-    $cpassword=md5($_POST['currentpassword']);
-    $newpassword=md5($_POST['newpassword']);
-    $sql ="SELECT ID FROM tbladmin WHERE ID=:adminid and Password=:cpassword";
-    $query= $dbh->prepare($sql);
+    $adminid = $_SESSION['sturecmsaid'];
+    $cpassword = md5($_POST['currentpassword']);
+    $newpassword = md5($_POST['newpassword']);
+    $sql = "SELECT ID FROM tbladmin WHERE ID=:adminid and Password=:cpassword";
+    $query = $dbh->prepare($sql);
     $query->bindParam(':adminid', $adminid, PDO::PARAM_STR);
     $query->bindParam(':cpassword', $cpassword, PDO::PARAM_STR);
     $query->execute();
     $results = $query->fetchAll(PDO::FETCH_OBJ);
 
     if($query->rowCount() > 0) {
-      $con="update tbladmin set Password=:newpassword where ID=:adminid";
+      $con = "update tbladmin set Password=:newpassword where ID=:adminid";
       $chngpwd1 = $dbh->prepare($con);
       $chngpwd1->bindParam(':adminid', $adminid, PDO::PARAM_STR);
       $chngpwd1->bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
       $chngpwd1->execute();
 
-      echo '<script>alert("Mật khẩu của bạn đã thay đổi thành công")</script>';
+      echo '<script>alert("Your password has been changed successfully")</script>';
     } else {
-      echo '<script>alert("Mật khẩu hiện tại của bạn sai")</script>';
+      echo '<script>alert("Your current password is wrong")</script>';
     }
   }
 }
@@ -71,11 +71,11 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="page-header">
-            <h3 class="page-title">Đổi Mật Khẩu</h3>
+            <h3 class="page-title">Change Password</h3>
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="manage-students.php"></a></li>
-                <li class="breadcrumb-item active" aria-current="page">Đổi Mật Khẩu</li>
+                <li class="breadcrumb-item active" aria-current="page">Change Password</li>
               </ol>
             </nav>
           </div>
@@ -83,21 +83,21 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title" style="text-align: center;">Đổi Mật Khẩu</h4>
+                  <h4 class="card-title" style="text-align: center;">Change Password</h4>
                   <form class="forms-sample" name="changepassword" method="post" onsubmit="return checkpass();">
                     <div class="form-group">
-                      <label for="exampleInputName1">Mật khẩu hiện tại</label>
+                      <label for="exampleInputName1">Current Password</label>
                       <input type="password" name="currentpassword" id="currentpassword" class="form-control" required="true">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail3">Mật khẩu Mới</label>
+                      <label for="exampleInputEmail3">New Password</label>
                       <input type="password" name="newpassword"  class="form-control" required="true">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword4">Xác Nhận Mật khẩu</label>
+                      <label for="exampleInputPassword4">Confirm Password</label>
                       <input type="password" name="confirmpassword" id="confirmpassword" value=""  class="form-control" required="true">
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2" name="submit">Đổi</button>
+                    <button type="submit" class="btn btn-primary mr-2" name="submit">Change</button>
                   </form>
                 </div>
               </div>
@@ -131,4 +131,3 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
   <!-- End custom js for this page -->
 </body>
 </html>
-

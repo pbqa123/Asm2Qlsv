@@ -49,10 +49,10 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title">Thêm Lớp Học</h3>
+              <h3 class="page-title">Add class</h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">Thêm Lớp Học</li>
+                  <li class="breadcrumb-item active" aria-current="page">Add class</li>
                 </ol>
               </nav>
             </div>
@@ -60,16 +60,16 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title" style="text-align: center;">Thêm Lớp Học</h4>
+                    <h4 class="card-title" style="text-align: center;">Add class</h4>
                     <form class="forms-sample" method="post">
                       <div class="form-group">
-                        <label for="exampleInputName1">Tên Môn Học</label>
+                        <label for="exampleInputName1">Subject title</label>
                         <input type="text" name="cname" value="" class="form-control" required='true'>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputEmail3">Lớp Học</label>
+                        <label for="exampleInputEmail3">Class</label>
                         <select name="section" class="form-control" required='true'>
-                          <option value="">Chọn Lớp Học</option>
+                          <option value="">Select class</option>
                           <option value="A">A</option>
                           <option value="B">B</option>
                           <option value="C">C</option>
@@ -78,7 +78,7 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
                           <option value="F">F</option>
                         </select>
                       </div>
-                      <button type="submit" class="btn btn-primary mr-2" name="submit">Thêm</button>
+                      <button type="submit" class="btn btn-primary mr-2" name="submit">Add</button>
                     </form>
                   </div>
                 </div>

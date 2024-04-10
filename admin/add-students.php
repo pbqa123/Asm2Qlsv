@@ -2,45 +2,45 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['sturecmsaid']==0)) {
+if (strlen($_SESSION['sturecmsaid']) == 0) {
   header('location:logout.php');
 } else {
   if(isset($_POST['submit'])) {
-    $stuname=$_POST['stuname'];
-    $stuemail=$_POST['stuemail'];
-    $stuclass=$_POST['stuclass'];
-    $gender=$_POST['gender'];
-    $dob=$_POST['dob'];
-    $stuid=$_POST['stuid'];
-    $uname=$_POST['uname'];
-    $password=md5($_POST['password']);
-    $ret="select UserName from tblstudent where UserName=:uname || StuID=:stuid";
-    $query= $dbh->prepare($ret);
-    $query->bindParam(':uname',$uname,PDO::PARAM_STR);
-    $query->bindParam(':stuid',$stuid,PDO::PARAM_STR);
+    $stuname = $_POST['stuname'];
+    $stuemail = $_POST['stuemail'];
+    $stuclass = $_POST['stuclass'];
+    $gender = $_POST['gender'];
+    $dob = $_POST['dob'];
+    $stuid = $_POST['stuid'];
+    $uname = $_POST['uname'];
+    $password = md5($_POST['password']);
+    $ret = "select UserName from tblstudent where UserName=:uname || StuID=:stuid";
+    $query = $dbh->prepare($ret);
+    $query->bindParam(':uname', $uname, PDO::PARAM_STR);
+    $query->bindParam(':stuid', $stuid, PDO::PARAM_STR);
     $query->execute();
     $results = $query->fetchAll(PDO::FETCH_OBJ);
     if($query->rowCount() == 0) {
-      $sql="insert into tblstudent(StudentName,StudentEmail,StudentClass,Gender,DOB,StuID,UserName,Password) values(:stuname,:stuemail,:stuclass,:gender,:dob,:stuid,:uname,:password)";
-      $query=$dbh->prepare($sql);
-      $query->bindParam(':stuname',$stuname,PDO::PARAM_STR);
-      $query->bindParam(':stuemail',$stuemail,PDO::PARAM_STR);
-      $query->bindParam(':stuclass',$stuclass,PDO::PARAM_STR);
-      $query->bindParam(':gender',$gender,PDO::PARAM_STR);
-      $query->bindParam(':dob',$dob,PDO::PARAM_STR);
-      $query->bindParam(':stuid',$stuid,PDO::PARAM_STR);
-      $query->bindParam(':uname',$uname,PDO::PARAM_STR);
-      $query->bindParam(':password',$password,PDO::PARAM_STR);
+      $sql = "insert into tblstudent(StudentName, StudentEmail, StudentClass, Gender, DOB, StuID, UserName, Password) values(:stuname, :stuemail, :stuclass, :gender, :dob, :stuid, :uname, :password)";
+      $query = $dbh->prepare($sql);
+      $query->bindParam(':stuname', $stuname, PDO::PARAM_STR);
+      $query->bindParam(':stuemail', $stuemail, PDO::PARAM_STR);
+      $query->bindParam(':stuclass', $stuclass, PDO::PARAM_STR);
+      $query->bindParam(':gender', $gender, PDO::PARAM_STR);
+      $query->bindParam(':dob', $dob, PDO::PARAM_STR);
+      $query->bindParam(':stuid', $stuid, PDO::PARAM_STR);
+      $query->bindParam(':uname', $uname, PDO::PARAM_STR);
+      $query->bindParam(':password', $password, PDO::PARAM_STR);
       $query->execute();
-      $LastInsertId=$dbh->lastInsertId();
-      if ($LastInsertId>0) {
-        echo '<script>alert("Sinh viên đã được thêm.")</script>';
+      $LastInsertId = $dbh->lastInsertId();
+      if ($LastInsertId > 0) {
+        echo '<script>alert("Student has been added.")</script>';
         echo "<script>window.location.href ='add-students.php'</script>";
       } else {
-        echo '<script>alert("Đã xảy ra lỗi. Vui lòng thử lại")</script>';
+        echo '<script>alert("An error occurred. Please try again.")</script>';
       }
     } else {
-      echo "<script>alert('Tên người dùng hoặc Id sinh viên đã tồn tại. Vui lòng thử lại');</script>";
+      echo "<script>alert('Username or Student ID already exists. Please try again');</script>";
     }
   }
 }
@@ -72,10 +72,10 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title">Thêm Sinh Viên</h3>
+              <h3 class="page-title">Add Students</h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">Thêm Sinh Viên</li>
+                  <li class="breadcrumb-item active" aria-current="page">Add Students</li>
                 </ol>
               </nav>
             </div>
@@ -83,18 +83,18 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title" style="text-align: center;">Thêm Sinh Viên</h4>
+                    <h4 class="card-title" style="text-align: center;">Add Students</h4>
                     <form class="forms-sample" method="post" enctype="multipart/form-data">
                       <div class="form-group">
-                        <label for="exampleInputName1">Tên Sinh Viên</label>
+                        <label for="exampleInputName1">Student Name</label>
                         <input type="text" name="stuname" value="" class="form-control" required='true'>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputName1"> Email Sinh Viên</label>
+                        <label for="exampleInputName1">Student Email</label>
                         <input type="text" name="stuemail" value="" class="form-control" required='true'>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputEmail3">Lớp Học</label>
+                        <label for="exampleInputEmail3">Class</label>
                         <select name="stuclass" class="form-control" required='true'>
                           <option value="">Select Class</option>
                           <?php 
@@ -108,33 +108,32 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputName1">Giới Tính</label>
+                        <label for="exampleInputName1">Gender</label>
                         <select name="gender" class="form-control" required='true'>
-                          <option value="">Chọn Giới Tính</option>
-                          <option value="Male">Nam</option>
-                          <option value="Female">Nữ</option>
-                          <option value="Khac">Khác</option>
-
+                          <option value="">Select Gender</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                          <option value="Other">Other</option>
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputName1">Sinh Nhật</label>
+                        <label for="exampleInputName1">Date of Birth</label>
                         <input type="date" name="dob" value="" class="form-control" required='true'>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputName1">ID Sinh Viên</label>
+                        <label for="exampleInputName1">Student ID</label>
                         <input type="text" name="stuid" value="" class="form-control" required='true'>
                       </div>
-                      <h3>Thông tin thêm về đăng nhập</h3>
+                      <h3>Login Information</h3>
                       <div class="form-group">
-                        <label for="exampleInputName1">Tên Đăng Nhập</label>
+                        <label for="exampleInputName1">Username</label>
                         <input type="text" name="uname" value="" class="form-control" required='true'>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputName1">Mật Khẩu Đăng Nhập</label>
+                        <label for="exampleInputName1">Password</label>
                         <input type="password" name="password" value="" class="form-control" required='true'>
                       </div>
-                      <button type="submit" class="btn btn-primary mr-2" name="submit">Thêm</button>
+                      <button type="submit" class="btn btn-primary mr-2" name="submit">Add</button>
                     </form>
                   </div>
                 </div>
@@ -163,4 +162,3 @@ if (strlen($_SESSION['sturecmsaid']==0)) {
     <!-- End custom js for this page -->
   </body>
 </html>
-

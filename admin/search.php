@@ -20,7 +20,7 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
 <html lang="en">
 <head>
    
-    <title>Hệ thống Quản lý Sinh viên || Tìm Kiếm</title>
+    <title>Student Management System || Search</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
@@ -49,10 +49,10 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="page-header">
-                        <h3 class="page-title"> Tìm Kiếm Sinh Viên </h3>
+                        <h3 class="page-title"> Search Students </h3>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item active" aria-current="page"> Tìm Kiếm Sinh Viên</li>
+                                <li class="breadcrumb-item active" aria-current="page"> Search Students</li>
                             </ol>
                         </nav>
                     </div>
@@ -62,29 +62,29 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
                                 <div class="card-body">
                                     <form method="post">
                                         <div class="form-group">
-                                            <strong>Tìm Kiếm Sinh Viên:</strong>
-                                            <input id="searchdata" type="text" name="searchdata" required="true" class="form-control" placeholder="Tìm Kiếm Sinh Viên bằng ID">
+                                            <strong>Search Students:</strong>
+                                            <input id="searchdata" type="text" name="searchdata" required="true" class="form-control" placeholder="Search Students by ID">
                                         </div>
-                                        <button type="submit" class="btn btn-primary" name="search" id="submit">Tìm Kiếm</button>
+                                        <button type="submit" class="btn btn-primary" name="search" id="submit">Search</button>
                                     </form>
                                     <div class="d-sm-flex align-items-center mb-4">
                                         <?php
                                         if (isset($_POST['search'])) {
                                             $sdata = $_POST['searchdata'];
                                         ?>
-                                            <h4 align="center">Kết Quả Trả Về "<?php echo $sdata;?>" Từ Khoá </h4>
+                                            <h4 align="center">Results for "<?php echo $sdata;?>" Keyword </h4>
                                         </div>
                                         <div class="table-responsive border rounded p-1">
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th class="font-weight-bold">Thứ Tự</th>
-                                                        <th class="font-weight-bold">ID Sinh Viên</th>
-                                                        <th class="font-weight-bold">Môn Học , Lớp Học</th>
-                                                        <th class="font-weight-bold">Tên</th>
+                                                        <th class="font-weight-bold">Serial Number</th>
+                                                        <th class="font-weight-bold">Student ID</th>
+                                                        <th class="font-weight-bold">Subject, Class</th>
+                                                        <th class="font-weight-bold">Name</th>
                                                         <th class="font-weight-bold">Email</th>
-                                                        <th class="font-weight-bold">Ngày Thêm</th>
-                                                        <th class="font-weight-bold">Hành Động</th>
+                                                        <th class="font-weight-bold">Date Added</th>
+                                                        <th class="font-weight-bold">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -131,7 +131,7 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
                                                     } else {
                                                     ?>
                                                         <tr>
-                                                            <td colspan="8"> Không tìm thấy bản ghi nào đối với tìm kiếm này</td>
+                                                            <td colspan="8"> No record found against this search</td>
                                                         </tr>
                                                     <?php
                                                     }
@@ -141,14 +141,14 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
                                         </div>
                                         <div align="left">
                                             <ul class="pagination">
-                                                <li><a href="?pageno=1"><strong>Đầu></strong></a></li>
+                                                <li><a href="?pageno=1"><strong>First></strong></a></li>
                                                 <li class="<?php if ($pageno <= 1) {echo 'disabled';} ?>">
-                                                    <a href="<?php if ($pageno <= 1) {echo '#';} else {echo "?pageno=".($pageno - 1);} ?>"><strong style="padding-left: 10px">Trước đó></strong></a>
+                                                    <a href="<?php if ($pageno <= 1) {echo '#';} else {echo "?pageno=".($pageno - 1);} ?>"><strong style="padding-left: 10px">Previous></strong></a>
                                                 </li>
                                                 <li class="<?php if ($pageno >= $total_pages) {echo 'disabled';} ?>">
-                                                    <a href="<?php if ($pageno >= $total_pages) {echo '#';} else {echo "?pageno=".($pageno + 1);} ?>"><strong style="padding-left: 10px">Kế tiếp></strong></a>
+                                                    <a href="<?php if ($pageno >= $total_pages) {echo '#';} else {echo "?pageno=".($pageno + 1);} ?>"><strong style="padding-left: 10px">Next></strong></a>
                                                 </li>
-                                                <li><a href="?pageno=<?php echo $total_pages; ?>"><strong style="padding-left: 10px">Cuối</strong></a></li>
+                                                <li><a href="?pageno=<?php echo $total_pages; ?>"><strong style="padding-left: 10px">Last</strong></a></li>
                                             </ul>
                                         </div>
                                     <?php

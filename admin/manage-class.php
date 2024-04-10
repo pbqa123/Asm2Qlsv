@@ -13,7 +13,7 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
         $query = $dbh->prepare($sql);
         $query->bindParam(':rid', $rid, PDO::PARAM_STR);
         $query->execute();
-        echo "<script>alert('Dữ liệu đã bị xóa');</script>"; 
+        echo "<script>alert('Data deleted successfully');</script>"; 
         echo "<script>window.location.href = 'manage-class.php'</script>";     
     }
 }
@@ -21,7 +21,7 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Hệ thống Quản lý Sinh viên ||| Quản lý Lớp</title>
+    <title>Student Management System || Manage Class</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
@@ -50,10 +50,10 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
         <div class="main-panel">
           <div class="content-wrapper">
              <div class="page-header">
-              <h3 class="page-title"> Quản lý Lớp </h3>
+              <h3 class="page-title"> Manage Class </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page"> Quản lý Lớp</li>
+                  <li class="breadcrumb-item active" aria-current="page"> Manage Class</li>
                 </ol>
               </nav>
             </div>
@@ -62,18 +62,18 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
                 <div class="card">
                   <div class="card-body">
                     <div class="d-sm-flex align-items-center mb-4">
-                      <h4 class="card-title mb-sm-0">Quản lý Lớp</h4>
-                      <a href="#" class="text-dark ml-auto mb-3 mb-sm-0"> Xem tất cả Lớp</a>
+                      <h4 class="card-title mb-sm-0">Manage Class</h4>
+                      <a href="#" class="text-dark ml-auto mb-3 mb-sm-0"> View All Classes</a>
                     </div>
                     <div class="table-responsive border rounded p-1">
                       <table class="table">
                         <thead>
                           <tr>
-                            <th class="font-weight-bold">STT</th>
-                            <th class="font-weight-bold">Tên Lớp</th>
-                            <th class="font-weight-bold">Khóa</th>
-                            <th class="font-weight-bold">Ngày Tạo</th>
-                            <th class="font-weight-bold">Thao Tác</th>
+                            <th class="font-weight-bold">Serial No</th>
+                            <th class="font-weight-bold">Class Name</th>
+                            <th class="font-weight-bold">Section</th>
+                            <th class="font-weight-bold">Creation Date</th>
+                            <th class="font-weight-bold">Action</th>
                             
                           </tr>
                         </thead>
@@ -108,7 +108,7 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
                                         <td><?php  echo htmlentities($row->CreationDate);?></td>
                                         <td>
                                             <div><a href="edit-class-detail.php?editid=<?php echo htmlentities($row->ID);?>"><i class="icon-eye"></i></a>
-                                            || <a href="manage-class.php?delid=<?php echo ($row->ID);?>" onclick="return confirm('Bạn có chắc muốn xóa ?');"> <i class="icon-trash"></i></a></div>
+                                            || <a href="manage-class.php?delid=<?php echo ($row->ID);?>" onclick="return confirm('Are you sure you want to delete?');"> <i class="icon-trash"></i></a></div>
                                         </td> 
                                     </tr>
                                 <?php $cnt = $cnt + 1;
@@ -119,14 +119,14 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
                     </div>
                     <div align="left">
                         <ul class="pagination" >
-                            <li><a href="?pageno=1"><strong>Đầu Tiên></strong></a></li>
+                            <li><a href="?pageno=1"><strong>First></strong></a></li>
                             <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-                                <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>"><strong style="padding-left: 10px">Trước></strong></a>
+                                <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>"><strong style="padding-left: 10px">Previous></strong></a>
                             </li>
                             <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-                                <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>"><strong style="padding-left: 10px">Sau></strong></a>
+                                <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>"><strong style="padding-left: 10px">Next></strong></a>
                             </li>
-                            <li><a href="?pageno=<?php echo $total_pages; ?>"><strong style="padding-left: 10px">Cuối Cùng</strong></a></li>
+                            <li><a href="?pageno=<?php echo $total_pages; ?>"><strong style="padding-left: 10px">Last</strong></a></li>
                         </ul>
                     </div>
                   </div>

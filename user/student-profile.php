@@ -51,7 +51,7 @@ if (strlen($_SESSION['sturecmsstuid'] == 0)) {
                                 <table border="1" class="table table-bordered mg-b-0">
                                     <?php
                                     $sid = $_SESSION['sturecmsstuid'];
-                                    $sql = "SELECT tblstudent.StudentName,tblstudent.StudentEmail,tblstudent.StudentClass,tblstudent.Gender,tblstudent.DOB,tblstudent.StuID,tblstudent.FatherName,tblstudent.MotherName,tblstudent.ContactNumber,tblstudent.AltenateNumber,tblstudent.Address,tblstudent.UserName,tblstudent.Password,tblstudent.Image,tblstudent.DateofAdmission,tblclass.ClassName,tblclass.Section from tblstudent join tblclass on tblclass.ID=tblstudent.StudentClass where tblstudent.StuID=:sid";
+                                    $sql = "SELECT tblstudent.StudentName,tblstudent.StudentEmail,tblstudent.StudentClass,tblstudent.Gender,tblstudent.DOB,tblstudent.StuID,tblstudent.UserName,tblstudent.Password,tblstudent.DateofAdmission,tblclass.ClassName,tblclass.Section from tblstudent join tblclass on tblclass.ID=tblstudent.StudentClass where tblstudent.StuID=:sid";
                                     $query = $dbh->prepare($sql);
                                     $query->bindParam(':sid', $sid, PDO::PARAM_STR);
                                     $query->execute();
@@ -81,31 +81,8 @@ if (strlen($_SESSION['sturecmsstuid'] == 0)) {
                                                 <td><?php echo $row->DOB; ?></td>
                                                 <th>Mã số Sinh viên</th>
                                                 <td><?php echo $row->StuID; ?></td>
-                                            </tr>
-                                            <tr class="table-success">
-                                                <th>Họ tên Cha</th>
-                                                <td><?php echo $row->FatherName; ?></td>
-                                                <th>Họ tên Mẹ</th>
-                                                <td><?php echo $row->MotherName; ?></td>
-                                            </tr>
-                                            <tr class="table-primary">
-                                                <th>Số điện thoại liên hệ</th>
-                                                <td><?php echo $row->ContactNumber; ?></td>
-                                                <th>Số điện thoại phụ</th>
-                                                <td><?php echo $row->AltenateNumber; ?></td>
-                                            </tr>
-                                            <tr class="table-progress">
-                                                <th>Địa chỉ</th>
-                                                <td><?php echo $row->Address; ?></td>
-                                                <th>Tên đăng nhập</th>
-                                                <td><?php echo $row->UserName; ?></td>
-                                            </tr>
-                                            <tr class="table-info">
-                                                <th>Ảnh đại diện</th>
-                                                <td><img src="../admin/images/<?php echo $row->Image; ?>"></td>
-                                                <th>Ngày nhập học</th>
-                                                <td><?php echo $row->DateofAdmission; ?></td>
-                                            </tr>
+                                            
+                            
                                             <?php $cnt = $cnt + 1;
                                         }
                                     } ?>

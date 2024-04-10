@@ -4,7 +4,7 @@
     <!-- container -->
     <div class="container">
         <div class="copyright-left">
-            <p> © 2024 Hệ Thống Quản Lý Sinh Viên</p>
+            <p> © 2024 Student Management System</p>
         </div>
         <div class="copyright-right">
             <ul>

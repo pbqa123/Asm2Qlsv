@@ -2,7 +2,7 @@
 session_start();
 //error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['sturecmsstuid']==0)) {
+if (strlen($_SESSION['sturecmsstuid'] == 0)) {
   header('location:logout.php');
 } else{
    
@@ -12,72 +12,72 @@ if (strlen($_SESSION['sturecmsstuid']==0)) {
 <html lang="vi">
   <head>
    
-    <title>Hệ thống Quản lý Sinh viên ||| Bảng điều khiển</title>
+    <title>Student Management System ||| Dashboard</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
-    <!-- Plugin css cho trang này -->
+    <!-- Plugin css for this page -->
     <link rel="stylesheet" href="./vendors/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="./vendors/chartist/chartist.min.css">
-    <!-- Kết thúc plugin css cho trang này -->
+    <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
-    <!-- Styles bố cục -->
+    <!-- Layout styles -->
     <link rel="stylesheet" href="./css/style.css">
-    <!-- Kết thúc styles bố cục -->
+    <!-- End layout styles -->
    
   </head>
   <body>
     <div class="container-scroller">
-      <!-- phần:partials/_navbar.html -->
+      <!-- partial:partials/_navbar.html -->
      <?php include_once('includes/header.php');?>
-      <!-- phần -->
+      <!-- partial -->
       <div class="container-fluid page-body-wrapper">
-        <!-- phần:partials/_sidebar.html -->
+        <!-- partial:partials/_sidebar.html -->
         <?php include_once('includes/sidebar.php');?>
-        <!-- phần -->
+        <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row purchace-popup">
               <div class="col-12 stretch-card grid-margin">
                 <div class="card card-secondary">
                   <span class="card-body d-lg-flex align-items-center">
-                    <p class="mb-lg-0">Thông báo từ trường vui lòng kiểm tra!</p>
-                    <a href="view-notice.php" target="_blank" class="btn btn-warning purchase-button btn-sm my-1 my-sm-0 ml-auto">Xem Thông báo</a>
+                    <p class="mb-lg-0">Notifications from the university, please check!</p>
+                    <a href="view-notice.php" target="_blank" class="btn btn-warning purchase-button btn-sm my-1 my-sm-0 ml-auto">View Notifications</a>
                   
                   </span>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Kết thúc phần nội dung -->
-          <!-- phần:partials/_footer.html -->
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
          <?php include_once('includes/footer.php');?>
-          <!-- phần -->
+          <!-- partial -->
         </div>
-        <!-- Kết thúc main-panel -->
+        <!-- main-panel ends -->
       </div>
-      <!-- Kết thúc page-body-wrapper -->
+      <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
-    <!-- Plugin js cho trang này -->
+    <!-- Plugin js for this page -->
     <script src="./vendors/chart.js/Chart.min.js"></script>
     <script src="./vendors/moment/moment.min.js"></script>
     <script src="./vendors/daterangepicker/daterangepicker.js"></script>
     <script src="./vendors/chartist/chartist.min.js"></script>
-    <!-- Kết thúc plugin js cho trang này -->
+    <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="js/off-canvas.js"></script>
     <script src="js/misc.js"></script>
     <!-- endinject -->
-    <!-- Tùy chỉnh js cho trang này -->
+    <!-- Custom js for this page -->
     <script src="./js/dashboard.js"></script>
-    <!-- Kết thúc tùy chỉnh js cho trang này -->
+    <!-- End custom js for this page -->
   </body>
 </html>
 <?php } ?>

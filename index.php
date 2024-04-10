@@ -3,9 +3,9 @@
 include('includes/dbconnection.php');
 ?>
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-<title>Hệ Thống Quản Lý Sinh Viên || Trang Chủ</title>
+<title>Student Management System || Home</title>
 <script type="application/x-javascript"> 
     addEventListener("load", function() { 
         setTimeout(hideURLbar, 0); 
@@ -53,10 +53,10 @@ include('includes/dbconnection.php');
        <div class="callbacks_container">
         <ul class="rslides" id="slider">
          <li>     
-          <h3>Hệ Thống Quản Lý Sinh Viên</h3>      
-           <p>Các sinh viên đã đăng ký có thể đăng nhập ở đây</p>             
+          <h3>Student Management System</h3>      
+           <p>Registered students can login here</p>             
           <div class="readmore">
-          <a href="user/login.php">Đăng Nhập Sinh Viên </a>
+          <a href="user/login.php">Student Login</a>
           </div>
          </li>
         </ul>

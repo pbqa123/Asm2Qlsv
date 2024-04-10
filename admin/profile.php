@@ -17,7 +17,7 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
         $query->bindParam(':mobilenumber', $mobno, PDO::PARAM_STR);
         $query->bindParam(':aid', $adminid, PDO::PARAM_STR);
         $query->execute();
-        echo '<script>alert("Hồ sơ của bạn đã được cập nhật")</script>';
+        echo '<script>alert("Your profile has been updated")</script>';
         echo "<script>window.location.href ='profile.php'</script>";
     }
 ?>
@@ -25,7 +25,7 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
 <html lang="en">
 <head>
    
-    <title>Hệ thống Quản lý Sinh viên || Hồ sơ</title>
+    <title>Student Management System || Profile</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
@@ -53,10 +53,10 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="page-header">
-              <h3 class="page-title"> Hồ sơ Admin </h3>
+              <h3 class="page-title"> Admin Profile </h3>
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item active" aria-current="page">Hồ sơ Admin</li>
+                  <li class="breadcrumb-item active" aria-current="page">Admin Profile</li>
                 </ol>
               </nav>
             </div>
@@ -64,7 +64,7 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
               <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title" style="text-align: center;">Hồ sơ Admin</h4>
+                    <h4 class="card-title" style="text-align: center;">Admin Profile</h4>
                    
                     <form class="forms-sample" method="post">
                       <?php
@@ -76,15 +76,15 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
                         foreach($results as $row) {
                       ?>
                       <div class="form-group">
-                        <label for="exampleInputName1">Tên Admin</label>
+                        <label for="exampleInputName1">Admin Name</label>
                         <input type="text" name="adminname" value="<?php echo $row->AdminName;?>" class="form-control" required='true'>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputEmail3">Tên người dùng</label>
+                        <label for="exampleInputEmail3">Username</label>
                         <input type="text" name="username" value="<?php echo $row->UserName;?>" class="form-control" readonly="">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputPassword4">Số điện thoại</label>
+                        <label for="exampleInputPassword4">Mobile Number</label>
                         <input type="text" name="mobilenumber" value="<?php echo $row->MobileNumber;?>"  class="form-control" maxlength='10' required='true' pattern="[0-9]+">
                       </div>
                       <div class="form-group">
@@ -92,11 +92,11 @@ if (strlen($_SESSION['sturecmsaid']) == 0) {
                          <input type="email" name="email" value="<?php echo $row->Email;?>" class="form-control" required='true'>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputCity1">Ngày đăng ký Admin</label>
+                        <label for="exampleInputCity1">Admin Registration Date</label>
                          <input type="text" name="" value="<?php echo $row->AdminRegdate;?>" readonly="" class="form-control">
                       </div>
                       <?php } ?> 
-                      <button type="submit" class="btn btn-primary mr-2" name="submit">Cập nhật</button>
+                      <button type="submit" class="btn btn-primary mr-2" name="submit">Update</button>
                      
                     </form>
                   </div>

@@ -27,43 +27,43 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-        <span class="menu-title">Lớp Học</span>
+        <span class="menu-title">Class</span>
         <!-- <i class="icon-layers menu-icon"></i> -->
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="add-class.php">Thêm Lớp Học</a></li>
-          <li class="nav-item"> <a class="nav-link" href="manage-class.php">Quản Lý Lớp Học</a></li>
+          <li class="nav-item"> <a class="nav-link" href="add-class.php">ADD class</a></li>
+          <li class="nav-item"> <a class="nav-link" href="manage-class.php">Class Management</a></li>
         </ul>
       </div>
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic1">
-        <span class="menu-title">Sinh Viên</span>
+        <span class="menu-title">Student</span>
         <!-- <i class="icon-people menu-icon"></i> -->
       </a>
       <div class="collapse" id="ui-basic1">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="add-students.php">Thêm Sinh Viên</a></li>
-          <li class="nav-item"> <a class="nav-link" href="manage-students.php">Quản Lý Sinh Viên</a></li>
+          <li class="nav-item"> <a class="nav-link" href="add-students.php">Add student</a></li>
+          <li class="nav-item"> <a class="nav-link" href="manage-students.php">Student management</a></li>
         </ul>
       </div>
     </li>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-        <span class="menu-title">Thông Báo</span>
+        <span class="menu-title">Notification</span>
         <!-- <i class="icon-doc menu-icon"></i> -->
       </a>
       <div class="collapse" id="auth">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="add-notice.php"> Thêm Thông Báo </a></li>
-          <li class="nav-item"> <a class="nav-link" href="manage-notice.php"> Quản Lý Thông Báo </a></li>
+          <li class="nav-item"> <a class="nav-link" href="add-notice.php">Add Notification </a></li>
+          <li class="nav-item"> <a class="nav-link" href="manage-notice.php"> Notification </a></li>
         </ul>
       </div>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="search.php">
-        <span class="menu-title">Tìm Kiếm Sinh Viên</span>
+        <span class="menu-title">Search</span>
         <!-- <i class="icon-magnifier menu-icon"></i> -->
       </a>
     </li>

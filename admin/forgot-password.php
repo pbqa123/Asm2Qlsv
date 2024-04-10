@@ -20,23 +20,21 @@ if(isset($_POST['submit'])) {
         $chngpwd1->bindParam(':mobile', $mobile, PDO::PARAM_STR);
         $chngpwd1->bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
         $chngpwd1->execute();
-        echo "<script>alert('Mật khẩu của bạn đã được thay đổi thành công');</script>";
+        echo "<script>alert('Your password has been successfully changed');</script>";
     } else {
-        echo "<script>alert('Địa chỉ email hoặc số điện thoại di động không hợp lệ');</script>"; 
+        echo "<script>alert('Invalid email address or mobile number');</script>"; 
     }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Hệ thống Quản lý Sinh viên || Quên mật khẩu</title>
+    <title>Student Management System || Forgot Password</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
@@ -44,7 +42,7 @@ if(isset($_POST['submit'])) {
     <script type="text/javascript">
         function valid() {
             if(document.chngpwd.newpassword.value != document.chngpwd.confirmpassword.value) {
-                alert("Mật khẩu mới và Xác nhận mật khẩu không khớp !!");
+                alert("New Password and Confirm Password field do not match !!");
                 document.chngpwd.confirmpassword.focus();
                 return false;
             }
@@ -62,30 +60,30 @@ if(isset($_POST['submit'])) {
                             <div class="brand-logo">
                                 <img src="images/logo.svg">
                             </div>
-                            <h4>KHÔI PHỤC MẬT KHẨU</h4>
-                            <h6 class="font-weight-light">Nhập địa chỉ email và số điện thoại di động của bạn để đặt lại mật khẩu!</h6>
+                            <h4>RESET PASSWORD</h4>
+                            <h6 class="font-weight-light">Enter your email address and mobile number to reset password!</h6>
                             <form class="pt-3" id="login" method="post" name="login">
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg" placeholder="Địa chỉ Email" required="true" name="email">
+                                    <input type="email" class="form-control form-control-lg" placeholder="Email Address" required="true" name="email">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" name="mobile" placeholder="Số điện thoại di động" required="true" maxlength="10" pattern="[0-9]+">
+                                    <input type="text" class="form-control form-control-lg" name="mobile" placeholder="Mobile Number" required="true" maxlength="10" pattern="[0-9]+">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control form-control-lg" type="password" name="newpassword" placeholder="Mật khẩu mới" required="true"/>
+                                    <input class="form-control form-control-lg" type="password" name="newpassword" placeholder="New Password" required="true"/>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control form-control-lg" type="password" name="confirmpassword" placeholder="Xác nhận mật khẩu" required="true" />
+                                    <input class="form-control form-control-lg" type="password" name="confirmpassword" placeholder="Confirm Password" required="true" />
                                 </div>
                                 <div class="mt-3">
-                                    <button class="btn btn-success btn-block loginbtn" name="submit" type="submit">Đặt lại</button>
+                                    <button class="btn btn-success btn-block loginbtn" name="submit" type="submit">Reset</button>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
-                                    <a href="login.php" class="auth-link text-black">đăng nhập</a>
+                                    <a href="login.php" class="auth-link text-black">login</a>
                                 </div>
                                 <div class="mb-2">
                                     <a href="../index.php" class="btn btn-block btn-facebook auth-form-btn">
-                                        <i class="icon-social-home mr-2"></i>Trở về Trang chủ </a>
+                                        <i class="icon-social-home mr-2"></i>Back to Home </a>
                                 </div>
                             </form>
                         </div>
@@ -100,8 +98,6 @@ if(isset($_POST['submit'])) {
     <!-- plugins:js -->
     <script src="vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="js/off-canvas.js"></script>
     <script src="js/misc.js"></script>

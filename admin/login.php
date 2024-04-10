@@ -33,14 +33,14 @@ if(isset($_POST['login'])) {
         $_SESSION['login'] = $_POST['username'];
         echo "<script type='text/javascript'> document.location ='manage-students.php'; </script>";
     } else {
-        echo "<script>alert('Thông tin không hợp lệ');</script>";
+        echo "<script>alert('Invalid credentials');</script>";
     }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Hệ thống Quản lý Sinh viên || Trang Đăng nhập</title>
+    <title>Student Management System || Login Page</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
@@ -64,28 +64,28 @@ if(isset($_POST['login'])) {
                             <div class="brand-logo">
                                 <img src="images/logo.svg">
                             </div>
-                            <h4>Xin chào! Bắt đầu ngay</h4>
-                            <h6 class="font-weight-light">Đăng nhập để tiếp tục.</h6>
+                            <h4>Hello! Let's get started</h4>
+                            <h6 class="font-weight-light">Sign in to continue.</h6>
                             <form class="pt-3" id="login" method="post" name="login">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" placeholder="Nhập tên người dùng của bạn" required="true" name="username" value="<?php if(isset($_COOKIE["user_login"])) { echo $_COOKIE["user_login"]; } ?>" >
+                                    <input type="text" class="form-control form-control-lg" placeholder="Enter your username" required="true" name="username" value="<?php if(isset($_COOKIE["user_login"])) { echo $_COOKIE["user_login"]; } ?>" >
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg" placeholder="Nhập mật khẩu của bạn" name="password" required="true" value="<?php if(isset($_COOKIE["userpassword"])) { echo $_COOKIE["userpassword"]; } ?>">
+                                    <input type="password" class="form-control form-control-lg" placeholder="Enter your password" name="password" required="true" value="<?php if(isset($_COOKIE["userpassword"])) { echo $_COOKIE["userpassword"]; } ?>">
                                 </div>
                                 <div class="mt-3">
-                                    <button class="btn btn-success btn-block loginbtn" name="login" type="submit">Đăng nhập</button>
+                                    <button class="btn btn-success btn-block loginbtn" name="login" type="submit">Sign in</button>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
                                     <div class="form-check">
                                         <label class="form-check-label text-muted">
-                                            <input type="checkbox" id="remember" class="form-check-input" name="remember" <?php if(isset($_COOKIE["user_login"])) { ?> checked <?php } ?> /> Giữ tôi đăng nhập </label>
+                                            <input type="checkbox" id="remember" class="form-check-input" name="remember" <?php if(isset($_COOKIE["user_login"])) { ?> checked <?php } ?> /> Remember me </label>
                                     </div>
-                                    <a href="forgot-password.php" class="auth-link text-black">Quên mật khẩu?</a>
+                                    <a href="forgot-password.php" class="auth-link text-black">Forgot password?</a>
                                 </div>
                                 <div class="mb-2">
                                     <a href="../index.php" class="btn btn-block btn-facebook auth-form-btn">
-                                        <i class="icon-social-home mr-2"></i>Về Trang chủ </a>
+                                        <i class="icon-social-home mr-2"></i>Back to Home </a>
                                 </div>
                             </form>
                         </div>

@@ -2,7 +2,7 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
-if (strlen($_SESSION['sturecmsaid'] == 0)) {
+if (strlen($_SESSION['sturecmsaid']) == 0) {
     header('location:logout.php');
 } else {
     if (isset($_POST['submit'])) {
@@ -16,7 +16,7 @@ if (strlen($_SESSION['sturecmsaid'] == 0)) {
         $query->bindParam(':section', $section, PDO::PARAM_STR);
         $query->bindParam(':eid', $eid, PDO::PARAM_STR);
         $query->execute();
-        echo '<script>alert("Lớp đã được cập nhật")</script>';
+        echo '<script>alert("Class has been updated")</script>';
     }
 }
 ?>
@@ -50,10 +50,10 @@ if (strlen($_SESSION['sturecmsaid'] == 0)) {
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="page-header">
-                    <h3 class="page-title">Quản lý lớp học</h3>
+                    <h3 class="page-title">Class Management</h3>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item active" aria-current="page">Quản lý lớp học</li>
+                            <li class="breadcrumb-item active" aria-current="page">Class Management</li>
                         </ol>
                     </nav>
                 </div>
@@ -61,12 +61,13 @@ if (strlen($_SESSION['sturecmsaid'] == 0)) {
                     <div class="col-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title" style="text-align: center;">Quản lý lớp học</h4>
+                                <h4 class="card-title" style="text-align: center;">Class Management</h4>
                                 <form class="forms-sample" method="post">
                                     <?php
                                     $eid = $_GET['editid'];
-                                    $sql = "SELECT * from  tblclass where ID=$eid";
+                                    $sql = "SELECT * from  tblclass where ID=:eid";
                                     $query = $dbh->prepare($sql);
+                                    $query->bindParam(':eid', $eid, PDO::PARAM_STR);
                                     $query->execute();
                                     $results = $query->fetchAll(PDO::FETCH_OBJ);
                                     $cnt = 1;
@@ -74,13 +75,13 @@ if (strlen($_SESSION['sturecmsaid'] == 0)) {
                                         foreach ($results as $row) {
                                             ?>
                                             <div class="form-group">
-                                                <label for="exampleInputName1">Tên Môn Học</label>
+                                                <label for="exampleInputName1">Class Name</label>
                                                 <input type="text" name="cname"
                                                        value="<?php echo htmlentities($row->ClassName); ?>"
                                                        class="form-control" required='true'>
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail3">Lớp Học</label>
+                                                <label for="exampleInputEmail3">Section</label>
                                                 <select name="section" class="form-control" required='true'>
                                                     <option
                                                         value="<?php echo htmlentities($row->Section); ?>"><?php echo htmlentities($row->Section); ?></option>
@@ -95,7 +96,7 @@ if (strlen($_SESSION['sturecmsaid'] == 0)) {
                                             <?php $cnt = $cnt + 1;
                                         }
                                     } ?>
-                                    <button type="submit" class="btn btn-primary mr-2" name="submit">Cập Nhật</button>
+                                    <button type="submit" class="btn btn-primary mr-2" name="submit">Update</button>
                                 </form>
                             </div>
                         </div>
@@ -129,4 +130,3 @@ if (strlen($_SESSION['sturecmsaid'] == 0)) {
 <!-- End custom js for this page -->
 </body>
 </html>
-
